@@ -1,0 +1,58 @@
+.form-container {
+  width: 350px;
+  margin: 40px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Labels */
+.form-container h2 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+/* Inputs */
+.form-container input {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.form-container input:focus {
+  border-color: #4a90e2;
+}
+
+/* Small info text */
+.grey {
+  font-size: 0.85rem;
+  color: #666;
+  margin-top: -8px;
+}
+
+/* Button */
+.form-container button {
+  width: 100px;
+  padding: 10px 0;
+  background-color: #1877f2;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.form-container button:hover {
+  background-color: #0f5ec7;
+}
+
+.error {
+  color: red;
+}

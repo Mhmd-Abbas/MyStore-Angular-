@@ -1,0 +1,56 @@
+*{
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.product-image {      
+  list-style-type: none;
+  width: 290px;
+  padding: 20px;
+  margin: 6px 6px;        
+  border: 1px solid #33B5E5;
+} 
+
+.product-container {
+  margin-top: 64px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* Product name and price */
+.product-container h3 {
+  margin: 4px 0;
+  text-align: center;
+  font-size: 1rem;
+  color: #333;
+}
+
+.select-input {
+  width: 100%; /* stretch to container width */
+  max-width: 120px;
+  padding: 6px;
+  font-size: 1rem;
+  margin: 8px 0;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.product-container button {
+  width: 100%;
+  max-width: 140px;
+  padding: 8px 0;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #33B5E5;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.product-container button:hover {
+  background-color: #1A86B9;
+}
+

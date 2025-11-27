@@ -1,0 +1,73 @@
+/* Outer container for each cart-item */
+div {
+  display: flex;
+  align-items: center;
+  gap: 24px;                     /* bigger spacing */
+  margin-bottom: 28px;
+  padding: 20px;                 /* bigger padding */
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+  font-family: 'Trebuchet MS', Arial, sans-serif;
+  transform: scale(1.02);        /* slight enlargement */
+}
+
+/* Product image */
+img {
+  width: 130px;                  /* bigger image */
+  height: 170px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* Right side text container */
+div > div {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;                     /* more spacing */
+}
+
+/* Product name */
+h1 {
+  font-size: 1.4rem;             /* bigger title */
+  margin: 0;
+  font-weight: 700;
+  color: #222;
+}
+
+/* Price and amount labels */
+h2 {
+  margin: 0;
+  font-size: 1.1rem;             /* larger text */
+  font-weight: 500;
+  color: #555;
+}
+
+/* Quantity input */
+input[type="number"] {
+  width: 70px;                   /* bigger input */
+  padding: 6px 8px;
+  font-size: 1.1rem;
+  text-align: center;
+  border-radius: 8px;
+  border: 1px solid #cccccc;
+  background: #f1f1f1;
+}
+
+/* Remove button */
+button {
+  width: 160px;                  /* slightly wider */
+  padding: 10px 0;
+  font-size: 1.1rem;
+  color: #fff;
+  background-color: #e53333;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+button:hover {
+  background-color: #c42424;
+}

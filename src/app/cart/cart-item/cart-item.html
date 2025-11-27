@@ -1,0 +1,12 @@
+<div class="cart-item">
+  <img src="{{ item?.product?.url }}" />
+
+  <div class="details">
+    <h1>{{ item?.product?.name }}</h1>
+    <h2>${{ item?.product?.price }}</h2>
+    <h2>
+      Amount:<input disabled type="number" [value]="item?.qnty" />
+    </h2>
+    <button (click)="removeItem(item?.product?.id)" >Remove Item</button>
+  </div>
+</div>

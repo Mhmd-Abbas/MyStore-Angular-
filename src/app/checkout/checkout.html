@@ -1,0 +1,18 @@
+<form #form="ngForm" class="form-container" (ngSubmit)="SubmitClick()">
+  <h2>Full name</h2>
+  <input type="text" name="FullName" [(ngModel)]="FullName" required minlength="3" placeholder="Your name..." />
+ 
+  <h2>Address</h2>
+  <input type="text" name="Address" [(ngModel)]="Address" required minlength="3" placeholder="City name..."/>
+
+  <h2>Credit card number</h2>
+  <input type="text"  name="CreditCardNumber" [(ngModel)]="CreditCardNumber" required minlength="16" placeholder="0000-0000-0000-0000" />
+
+  <span class="grey" >We'll never share your payment details with anyone else.</span>
+
+  @if(form.invalid){
+    <span class="error" >Please fill out all the fields</span>
+  }
+ 
+  <button type="submit" [disabled]="form.invalid" >Submit</button>
+</form>
