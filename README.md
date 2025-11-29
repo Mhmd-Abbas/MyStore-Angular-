@@ -1,59 +1,75 @@
 # MyStore
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.0.
+To start the development server:
 
-## Development server
-
-To start a local development server, run:
-
-```bash
+```In the bash run:
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Navigate to `http://localhost:4200/`. The application will automatically reload on file changes.
 
-## Code scaffolding
+## Features
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- **Products List** - Browse and view products with detailed information
+- **Shopping Cart** - Add/remove items from cart with quantity selection
+- **Checkout** - Secure checkout form with validation
+- **Order Success** - Confirmation page after successful purchase
+- **State Management** - Persistent product state across components
 
-```bash
-ng generate component component-name
+## Project Structure
+
+### Components
+
+#### Core Components
+
+- **app.ts** - Root component with routing configuration
+- **nav-bar** - Navigation bar with cart badge displaying total items
+- **success-page** - Order confirmation page
+
+#### Product Components
+
+- **product-list** - Displays grid of all products (Parent Component)
+- **product-card** - Individual product card with add to cart functionality (Child Component)
+- **product-details** - Detailed product view with full description
+
+#### Cart Components
+
+- **cart-page** - Main cart page displaying all cart items and total price (Parent Component)
+- **cart-item** - Individual cart item display with remove functionality (Child Component)
+- **checkout** - Form for collecting customer details (name, address, credit card) (Child Component)
+
+### Services
+
+- **CartService** - Manages shopping cart state and operations (add, remove, clear)
+- **GetProducts** - HTTP service to fetch products from data source
+- **GetProduct** - HTTP service to fetch single product details
+- **ProductState** - Service to maintain product state across navigation
+
+### Models
+
+- **Product** - Product interface with id, name, price, url, and description
+- **CartItemModel** - Cart item interface with product and quantity
+
+## Component Communication Pattern
+
+The application follows a **parent-to-child** communication pattern using `@Input` and `@Output` decorators:
+
+```
+ProductList (Parent)
+└── ProductCard (Child)
+    └── Emits: addToCart event
+
+CartPage (Parent)
+├── CartItem (Child)
+│   └── Emits: removeItemClick event
+└── Checkout (Child)
+    └── Emits: submitCheckout event
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+This ensures:
 
-```bash
-ng generate --help
-```
+- Service logic is centralized in parent components
+- Components remain reusable and loosely coupled
+- Cleaner dependency injection and testing
+- Unidirectional data flow for better maintainability
 
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.

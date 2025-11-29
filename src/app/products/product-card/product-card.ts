@@ -1,8 +1,7 @@
-import { Component, Input} from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { Product } from '../../models/Product';
-import { CartService } from '../../services/cart-service';
 
 @Component({
   selector: 'app-product-card',
@@ -11,22 +10,19 @@ import { CartService } from '../../services/cart-service';
   styleUrl: './product-card.css',
 })
 export class ProductCard {
-  //@ts-ignore
-  @Input() product:Product
-  selectedQty: number = 1 
+  @Input() product!: Product;
+  @Output() addToCart = new EventEmitter<{ product: Product; quantity: number }>();
 
-  constructor( 
-    private router:Router,
-    private cart: CartService
-   ) {}
+  selectedQty: number = 1;
 
-  onClick(id: number){
-    this.router.navigate(["/products", id])
+  constructor(private router: Router) {}
+
+  onClick(id: number) {
+    this.router.navigate(['/products', id]);
   }
 
-  addToCartClicked(){
-    this.cart.addToCart(this.product, this.selectedQty)
-    alert("Product has been added to cart")
+  addToCartClicked() {
+    this.addToCart.emit({ product: this.product, quantity: this.selectedQty });
+    alert('Product has been added to cart');
   }
-
 }

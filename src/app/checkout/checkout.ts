@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { CartService } from '../services/cart-service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,51 +9,55 @@ import { Router } from '@angular/router';
   styleUrl: './checkout.css',
 })
 export class Checkout {
+  @Input() cartTotal: number = 0;
+  @Output() submitCheckout = new EventEmitter<{
+    fullName: string;
+    address: string;
+    cardNumber: string;
+  }>();
+
   FullName: string = '';
   Address: string = '';
   CreditCardNumber: string = '';
   errorMsg: string = '';
 
-  constructor(
-    private router: Router,
-    private cartService: CartService
-  ) {}
+  constructor(private router: Router) {}
 
   SubmitClick() {
-    if (this.cartService.totalItems() === 0) {
+    if (this.cartTotal === 0) {
       alert('Your cart is empty!');
     } else {
-      this.cartService.setUserName(this.FullName);
-      this.router.navigate(['/success']);
+      this.submitCheckout.emit({
+        fullName: this.FullName,
+        address: this.Address,
+        cardNumber: this.CreditCardNumber,
+      });
     }
   }
 
-validateForm() {
-  this.errorMsg = '';
+  validateForm() {
+    this.errorMsg = '';
 
-  const specialCharRegex = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+    const specialCharRegex = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
 
-  if (specialCharRegex.test(this.FullName)) {
-    this.errorMsg = 'Please remove any special characters from your name.';
-    return;
-  }
+    if (specialCharRegex.test(this.FullName)) {
+      this.errorMsg = 'Please remove any special characters from your name.';
+      return;
+    }
 
-  if (specialCharRegex.test(this.Address)) {
-    this.errorMsg = 'Please remove any special characters from your address.';
-    return;
-  }
+    if (specialCharRegex.test(this.Address)) {
+      this.errorMsg = 'Please remove any special characters from your address.';
+      return;
+    }
 
-  if (specialCharRegex.test(this.CreditCardNumber)) {
+    if (specialCharRegex.test(this.CreditCardNumber)) {
       this.errorMsg = 'Please remove any special characters from your credit card number.';
       return;
-  }
+    }
 
-  if (this.CreditCardNumber && this.CreditCardNumber.toString().length !== 16) {
+    if (this.CreditCardNumber && this.CreditCardNumber.toString().length !== 16) {
       this.errorMsg = 'Credit card number must be exactly 16 digits.';
       return;
+    }
   }
-}
-
-
-
 }

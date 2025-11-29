@@ -1,9 +1,9 @@
 <div class="product-index ">
-
     @for (product of products; track product.id) {
-
-    <app-product-card class="product-container" [product]="product" >
+    <app-product-card 
+      class="product-container" 
+      [product]="product"
+      (addToCart)="onAddToCart($event)">
     </app-product-card>
-
     }
 </div>

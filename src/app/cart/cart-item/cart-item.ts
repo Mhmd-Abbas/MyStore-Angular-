@@ -1,6 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CartItemModel } from '../../models/CartItemModel';
-import { CartService } from '../../services/cart-service';
 
 @Component({
   selector: 'app-cart-item',
@@ -9,18 +8,14 @@ import { CartService } from '../../services/cart-service';
   styleUrl: './cart-item.css',
 })
 export class CartItem {
-
   @Input() item?: CartItemModel;
-
-  constructor( private cartService: CartService ) {}
+  @Output() removeItemClick = new EventEmitter<number>();
 
   removeItem(productId?: number) {
     if(productId){
-      this.cartService.remove(productId)
-      alert("Product has been removed from cart")
+      this.removeItemClick.emit(productId);
     }else{
-      alert("There was a problem removing product")
+      alert("There was a problem removing product");
     }
   }
-
 }

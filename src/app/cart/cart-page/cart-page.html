@@ -1,16 +1,12 @@
 <div class="cart-container">
-    <div class="cart-panel">
-        <h2>Total: {{ Total }} <button class="" (click)="clearCart()" >Clear Cart</button> </h2>
-        @for (item of cartItems; track item.product.id) {
-            <app-cart-item  
-                [item]="item"
-            ></app-cart-item>
-        }
-    </div>
+  <div class="cart-panel">
+    <h2>Total: {{ Total }} <button class="" (click)="clearCart()">Clear Cart</button></h2>
+    @for (item of cartItems; track item.product.id) {
+    <app-cart-item [item]="item" (removeItemClick)="onRemoveItem($event)"></app-cart-item>
+    }
+  </div>
 
-    <div>
-        <app-checkout></app-checkout>
-    </div>
-
+  <div>
+    <app-checkout [cartTotal]="Total" (submitCheckout)="onSubmitCheckout($event)"></app-checkout>
+  </div>
 </div>
-
