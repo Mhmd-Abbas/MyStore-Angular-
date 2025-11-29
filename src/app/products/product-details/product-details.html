@@ -1,10 +1,10 @@
 <div class="detail-container">
-  <img src="{{ product?.url }}" class="detail-item" />
+  <img src="{{ product.url }}" class="detail-item" />
   <div>
-    <h1>{{ product?.name }}</h1>
-    <h2>{{ product?.price }}</h2>
-    <h3>{{ product?.description }}</h3>
-    <select class="select-input">
+    <h1>{{ product.name }}</h1>
+    <h2>{{ product.price }}</h2>
+    <h3>{{ product.description }}</h3>
+    <select class="select-input" [(ngModel)]="selectedQty" >
       <option value="1">1</option>
       <option value="2">2</option>
       <option value="3">3</option>
@@ -17,7 +17,7 @@
       <option value="10">10</option>
     </select>
     <br>
-    <button>Add to cart</button>
+    <button (click)="addToCartClicked()" >Add to cart</button>
     <br>
     <br>
     <a href="/" class="back-link"> ← Back to products list </a>

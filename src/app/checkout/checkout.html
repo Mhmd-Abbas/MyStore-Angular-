@@ -1,18 +1,55 @@
 <form #form="ngForm" class="form-container" (ngSubmit)="SubmitClick()">
+
   <h2>Full name</h2>
-  <input type="text" name="FullName" [(ngModel)]="FullName" required minlength="3" placeholder="Your name..." />
- 
+  <input
+    type="text"
+    name="FullName"
+    [(ngModel)]="FullName"
+    (ngModelChange)="validateForm()"
+    required
+    minlength="3"
+    maxlength="25"
+    placeholder="Your name..."
+  />
+
   <h2>Address</h2>
-  <input type="text" name="Address" [(ngModel)]="Address" required minlength="3" placeholder="City name..."/>
+  <input
+    type="text"
+    name="Address"
+    [(ngModel)]="Address"
+    (ngModelChange)="validateForm()"
+    required
+    minlength="3"
+    maxlength="30"
+    placeholder="City name..."
+  />
 
   <h2>Credit card number</h2>
-  <input type="text"  name="CreditCardNumber" [(ngModel)]="CreditCardNumber" required minlength="16" placeholder="0000-0000-0000-0000" />
+  <input
+    name="CreditCardNumber"
+    [(ngModel)]="CreditCardNumber"
+    (ngModelChange)="validateForm()"
+    required
+    minlength="16"
+    [min]="0"
+    placeholder="0000-0000-0000-0000"
+    inputmode="numeric"
+  />
 
-  <span class="grey" >We'll never share your payment details with anyone else.</span>
+  <span class="grey">
+    We'll never share your payment details with anyone else.
+  </span>
 
+  <!-- Angular form-level errors -->
   @if(form.invalid){
-    <span class="error" >Please fill out all the fields</span>
+    <span class="error">Please fill out all the fields correctly.</span>
   }
- 
-  <button type="submit" [disabled]="form.invalid" >Submit</button>
+
+  <!-- Custom validation error -->
+  @if(errorMsg.length > 0){
+    <span class="error">{{ errorMsg }}</span>
+  }
+
+
+  <button type="submit" [disabled]="form.invalid || errorMsg">Submit</button>
 </form>

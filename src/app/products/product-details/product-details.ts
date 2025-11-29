@@ -3,22 +3,25 @@ import { ActivatedRoute } from '@angular/router';
 import { ChangeDetectorRef } from '@angular/core';
 import { Product } from '../../models/Product';
 import { GetProduct } from '../../services/get-product';
-import { CommonModule } from '@angular/common';
+import { CartService } from '../../services/cart-service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-product-details',
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './product-details.html',
   styleUrl: './product-details.css',
 })
 export class ProductDetails implements OnInit {
   //@ts-ignore
-  product?: Product;
+  product: Product;
+  selectedQty: number = 1 
 
   constructor(
     private route: ActivatedRoute,
     private cdr: ChangeDetectorRef,
-    private getProduct: GetProduct
+    private getProduct: GetProduct,
+    private cartService: CartService
   ) {}
 
   ngOnInit(): void {
@@ -39,4 +42,10 @@ export class ProductDetails implements OnInit {
       }
     });
   }
+
+  addToCartClicked(){
+    this.cartService.addToCart(this.product, this.selectedQty)
+    alert("Product has been added to cart")
+  }
+  
 }

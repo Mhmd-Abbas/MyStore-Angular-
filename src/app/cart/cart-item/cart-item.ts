@@ -17,6 +17,7 @@ export class CartItem {
   removeItem(productId?: number) {
     if(productId){
       this.cartService.remove(productId)
+      alert("Product has been removed from cart")
     }else{
       alert("There was a problem removing product")
     }

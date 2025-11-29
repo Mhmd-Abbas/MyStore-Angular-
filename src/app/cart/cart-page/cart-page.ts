@@ -26,6 +26,7 @@ export class CartPage implements OnInit {
 
   clearCart() {
     this.cartService.clear();
+    alert("Cart has been cleared");
   }
 
 }
